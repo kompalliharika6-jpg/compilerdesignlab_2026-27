@@ -28,6 +28,12 @@ class TACGenerator:
         return self.program
 
     def gen_stmt(self, stmt):
+        if isinstance(stmt, Assign) ->
+              operand = self.gen_expr(stmt.expr)
+              self.program.append(AssignTriple(stmt.var.name, operand))
+        elif   isinstance(stmt, Print) ->
+              operand = self.gen_expr(stmt.expr)
+              self.program.append(PrintTriple(operand))
         """
         TODO(week-4): depending on the statement's type.
 
@@ -49,6 +55,17 @@ class TACGenerator:
               self.program.append(PrintTriple(operand))
 
     def gen_expr(self, node):
+        if  isinstance(node, Num):
+            return str(node.value)
+        elif isinstance(node, Var):
+            return node.name
+        elif isinstance(node, BinOp) ->
+              left  = self.gen_expr(node.left)
+              right = self.gen_expr(node.right)
+              return self.program.append(BinOpTriple(node.op, left, right))
+ 
+
+
         """
         TODO(week-4): dispatch on the expression node's type. Returns an
         OPERAND -- a plain variable-name string, a literal's text, or a

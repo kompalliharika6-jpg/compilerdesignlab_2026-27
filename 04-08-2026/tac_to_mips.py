@@ -1,4 +1,4 @@
-"""
+  """
 Three-Address Code (triples) to MIPS generator.
 
 Read docs/register_allocation_reference.md and
